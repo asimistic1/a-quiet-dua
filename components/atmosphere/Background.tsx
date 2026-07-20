@@ -65,7 +65,9 @@ export default function Background({ chapter }: Props) {
 
       {/* Soft light veils — CSS gradients only, transform/opacity animated */}
       <div
-        className={`sky-veil ${reduced ? "" : "sky-veil-drift"}`}
+        className={`sky-veil ${
+          reduced ? "" : chapter === 1 ? "sky-veil-fast" : "sky-veil-drift"
+        }`}
         data-chapter={chapter}
       />
 
@@ -86,7 +88,9 @@ export default function Background({ chapter }: Props) {
         style={{
           background: isDawn
             ? "radial-gradient(75% 55% at 50% 100%, rgba(10,40,90,0.2) 0%, transparent 55%)"
-            : "radial-gradient(80% 70% at 50% 50%, transparent 38%, rgba(0,0,0,0.42) 100%)",
+              : chapter === 1
+              ? "radial-gradient(85% 75% at 50% 42%, transparent 42%, rgba(0,0,0,0.22) 100%)"
+              : "radial-gradient(80% 70% at 50% 50%, transparent 38%, rgba(0,0,0,0.42) 100%)",
           opacity: chapter === 2 ? 1.08 : 1,
         }}
       />

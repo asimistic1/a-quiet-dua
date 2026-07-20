@@ -25,7 +25,10 @@ export default function ShootingStar({ chapter }: Props) {
     let clearTimer = 0;
 
     const schedule = () => {
-      const wait = 22000 + Math.random() * 8000;
+      const wait =
+        chapter === 1
+          ? 9000 + Math.random() * 6000
+          : 22000 + Math.random() * 8000;
       waitTimer = window.setTimeout(() => {
         if (cancelled) return;
         setShot({
@@ -48,7 +51,7 @@ export default function ShootingStar({ chapter }: Props) {
       window.clearTimeout(waitTimer);
       window.clearTimeout(clearTimer);
     };
-  }, [enabled]);
+  }, [enabled, chapter]);
 
   if (!enabled || !shot) return null;
 

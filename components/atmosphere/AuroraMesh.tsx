@@ -20,11 +20,12 @@ type Orb = {
  */
 export default function AuroraMesh({ chapter }: Props) {
   const reduced = useReducedMotion();
-  const isDawn = chapter === 0;
+  const isBirthday = chapter === 0;
+  const isQuiet = chapter === 1;
   const isPlain = chapter === 2;
 
   const orbs = useMemo<Orb[]>(() => {
-    if (isDawn) {
+    if (isBirthday) {
       return [
         {
           className: "aurora-orb aurora-a",
@@ -58,6 +59,44 @@ export default function AuroraMesh({ chapter }: Props) {
             top: "40%",
             background: `radial-gradient(circle, ${palette.lavenderSea} 0%, rgba(184,164,212,0.3) 35%, transparent 70%)`,
             opacity: 0.28,
+          },
+        },
+      ];
+    }
+
+    if (isQuiet) {
+      return [
+        {
+          className: "aurora-orb aurora-fast-a",
+          style: {
+            width: "78vmax",
+            height: "78vmax",
+            left: "-18%",
+            top: "-18%",
+            background: `radial-gradient(circle, #2a9a82 0%, rgba(20,120,95,0.55) 32%, transparent 70%)`,
+            opacity: 0.85,
+          },
+        },
+        {
+          className: "aurora-orb aurora-fast-b",
+          style: {
+            width: "70vmax",
+            height: "70vmax",
+            right: "-20%",
+            top: "8%",
+            background: `radial-gradient(circle, #4a6ad4 0%, rgba(50,70,160,0.55) 32%, transparent 70%)`,
+            opacity: 0.75,
+          },
+        },
+        {
+          className: "aurora-orb aurora-fast-c",
+          style: {
+            width: "58vmax",
+            height: "58vmax",
+            left: "22%",
+            bottom: "-18%",
+            background: `radial-gradient(circle, ${palette.brightGold} 0%, rgba(243,223,174,0.45) 28%, transparent 68%)`,
+            opacity: 0.65,
           },
         },
       ];
@@ -98,7 +137,7 @@ export default function AuroraMesh({ chapter }: Props) {
         },
       },
     ];
-  }, [isDawn]);
+  }, [isBirthday, isQuiet]);
 
   return (
     <motion.div
@@ -109,7 +148,7 @@ export default function AuroraMesh({ chapter }: Props) {
     >
       {orbs.map((orb, i) => (
         <div
-          key={`${isDawn ? "d" : "n"}-${i}`}
+          key={`${chapter}-${i}`}
           className={reduced ? "aurora-orb" : orb.className}
           style={orb.style}
         />

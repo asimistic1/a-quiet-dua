@@ -11,6 +11,7 @@ import GoldenThread from "@/components/atmosphere/GoldenThread";
 import Grain from "@/components/atmosphere/Grain";
 import Mandala from "@/components/atmosphere/Mandala";
 import OrnamentFrame from "@/components/atmosphere/OrnamentFrame";
+import QuietNight from "@/components/atmosphere/QuietNight";
 import ShootingStar from "@/components/atmosphere/ShootingStar";
 import Stars from "@/components/atmosphere/Stars";
 import UnderwaterWorld from "@/components/atmosphere/UnderwaterWorld";
@@ -26,6 +27,7 @@ export default function Experience() {
   const [chapter, setChapter] = useState(0);
   const [letterMode, setLetterMode] = useState(false);
   const isBirthday = chapter === CHAPTER.birthday;
+  const isQuiet = chapter === CHAPTER.opening;
   const isLast = chapter === CHAPTER.promise;
   const isLight = isBirthday;
   const showAmbientMandala =
@@ -74,12 +76,20 @@ export default function Experience() {
       <div className="pointer-events-none absolute inset-0 z-0">
         <Background chapter={chapter} />
         <UnderwaterWorld active={isBirthday} />
+        <QuietNight active={isQuiet} />
         <AuroraMesh chapter={chapter} />
         <div
           className="absolute inset-0 transition-opacity duration-[1600ms]"
           style={{ opacity: showAmbientMandala ? 1 : 0 }}
         >
-          <Mandala mode="ambient" drawIn={false} />
+          <Mandala
+            mode="ambient"
+            drawIn={false}
+            opacity={isQuiet ? 0.14 : undefined}
+            stroke={isQuiet ? "#E6C280" : undefined}
+            spinDuration={isQuiet ? 120 : undefined}
+            size={isQuiet ? "150vmin" : undefined}
+          />
         </div>
         <Stars chapter={chapter} />
         <ShootingStar chapter={chapter} />

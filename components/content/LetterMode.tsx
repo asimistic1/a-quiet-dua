@@ -32,7 +32,7 @@ export default function LetterMode({ onClose }: Props) {
         <div className="flex flex-col gap-16">
           {chapters.map((ch, index) => (
             <section key={index} className="flex flex-col items-center text-center">
-              {ch.englishOnly ? (
+                  {ch.englishOnly ? (
                 <>
                   {ch.title && (
                     <p
@@ -66,11 +66,8 @@ export default function LetterMode({ onClose }: Props) {
                     key={i}
                     dir="rtl"
                     lang="ur"
-                    className={`font-urdu ${index === 1 && i === 0 ? "urdu-display" : "urdu-body"} mb-3`}
-                    style={{
-                      color:
-                        index === 1 && i === 0 ? palette.gold : palette.silver,
-                    }}
+                    className="font-urdu urdu-body mb-3"
+                    style={{ color: palette.silver }}
                   >
                     {line}
                   </p>

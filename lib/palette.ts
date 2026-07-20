@@ -31,9 +31,9 @@ export const palette = {
 export type PaletteKey = keyof typeof palette;
 
 /** Stars fade across night chapters; birthday (0) uses underwater sparkles instead */
-export const starOpacity = [0, 0.5, 0.45, 0.35, 0.3, 0.12] as const;
+export const starOpacity = [0, 0.85, 0.45, 0.35, 0.3, 0.12] as const;
 
-export const frameOpacity = [0, 0.3, 0.06, 0.26, 0.26, 0.32] as const;
+export const frameOpacity = [0, 0.48, 0.06, 0.26, 0.26, 0.32] as const;
 
 /** Precomposed multi-stop skies — one paint layer, no blur filters. */
 export function skyGradient(chapter: number): string {
@@ -48,10 +48,14 @@ export function skyGradient(chapter: number): string {
         `radial-gradient(120% 100% at 50% 50%, #A8D4F5 0%, #6BB0E0 22%, #3D84C4 48%, #1F5FA8 72%, #0E2A5C 100%)`,
       ].join(", ");
     case 1:
+      // Quiet apology — powerful luminous night
       return [
-        `radial-gradient(90% 70% at 50% 18%, rgba(230,194,128,0.10) 0%, transparent 42%)`,
-        `radial-gradient(70% 55% at 78% 22%, rgba(14,59,51,0.45) 0%, transparent 55%)`,
-        `radial-gradient(120% 95% at 50% 38%, #0B132B 0%, #0A1C28 38%, #08211D 72%, #040E12 100%)`,
+        `radial-gradient(70% 55% at 50% 8%, rgba(243,223,174,0.32) 0%, rgba(230,194,128,0.12) 32%, transparent 58%)`,
+        `radial-gradient(85% 70% at 50% 45%, rgba(60,110,160,0.28) 0%, transparent 55%)`,
+        `radial-gradient(75% 60% at 8% 75%, rgba(20,110,90,0.55) 0%, transparent 58%)`,
+        `radial-gradient(70% 55% at 95% 25%, rgba(70,50,120,0.42) 0%, transparent 52%)`,
+        `radial-gradient(90% 50% at 50% 100%, rgba(230,194,128,0.14) 0%, transparent 45%)`,
+        `radial-gradient(120% 100% at 50% 40%, #1A2F4A 0%, #122038 28%, #0C1A2C 55%, #081018 100%)`,
       ].join(", ");
     case 2:
       return [

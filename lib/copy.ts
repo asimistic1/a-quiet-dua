@@ -19,9 +19,11 @@ export const chapters: ChapterCopy[] = [
     micro: "[ tap — a few quiet words ]",
   },
   {
-    urdu: ["خاموشی کی اپنی ایک زبان ہوتی ہے۔"],
+    englishOnly: true,
+    urdu: [],
+    title: "A Quiet Apology & A Distant Wish",
     english:
-      "Silence has its own language. Tonight I've borrowed a few minutes of it — a handful of quiet words, and then I'll give it back.",
+      "I am truly sorry for reaching out after you explicitly asked me to stay disconnected. I don't want to ruin your day or overstep again, but I couldn't control the need to wish you a happy birthday. I kept this link very simple and diligent. It is only here to deliver my birthday wishes and my sincerest apologies for the hurdles and mistakes I constantly create for you. I promise to step back into the distance after this.",
     micro: "[ tap — a few quiet words ]",
   },
   {
