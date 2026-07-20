@@ -1,26 +1,599 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --night: #070d1a;
+  --midnight: #0b132b;
+  --char: #14161e;
+  --predawn: #1b2340;
+  --mauve: #3a2e3f;
+  --dawn-ivory: #f3e9e1;
+  --blush: #efdfd6;
+  --gold: #e6c280;
+  --deep-gold: #a9834b;
+  --bright-gold: #f3dfae;
+  --silver: #c9cdd6;
+  --ink: #3b3430;
+  --emerald-night: #08211d;
+  --emerald: #0e3b33;
+  --teal-shadow: #0a2a26;
+  --indigo-deep: #101b33;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-night: var(--night);
+  --color-midnight: var(--midnight);
+  --color-char: var(--char);
+  --color-predawn: var(--predawn);
+  --color-mauve: var(--mauve);
+  --color-dawn-ivory: var(--dawn-ivory);
+  --color-blush: var(--blush);
+  --color-gold: var(--gold);
+  --color-deep-gold: var(--deep-gold);
+  --color-silver: var(--silver);
+  --color-ink: var(--ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--midnight);
+  color: var(--silver);
+  font-family: var(--font-serif), "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+::selection {
+  background: rgba(230, 194, 128, 0.28);
+  color: inherit;
+}
+
+.font-serif {
+  font-family: var(--font-serif), "Times New Roman", serif;
+}
+
+.font-ui {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 10px;
+}
+
+.font-urdu {
+  font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
+  letter-spacing: 0 !important;
+  direction: rtl;
+}
+
+.urdu-display {
+  font-size: clamp(2.5rem, 9vw, 4.5rem);
+  line-height: 1.95;
+  min-height: 3.6em;
+}
+
+.urdu-body {
+  font-size: clamp(1.5rem, 5.5vw, 2.1rem);
+  line-height: 2.1;
+  min-height: 2.6em;
+}
+
+.english-lead {
+  font-size: clamp(1.05rem, 1.9vw, 1.25rem);
+  line-height: 1.9;
+  max-width: 38ch;
+}
+
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.gold-text {
+  color: #e6c280;
+  background-image: linear-gradient(
+    105deg,
+    #a9834b 0%,
+    #e6c280 35%,
+    #f7e7be 50%,
+    #e6c280 65%,
+    #a9834b 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gold-text-sheen {
+  animation: sheen 8s ease-in-out infinite;
+}
+
+.gold-text-glow {
+  filter: drop-shadow(0 0 12px rgba(230, 194, 128, 0.18));
+}
+
+@keyframes sheen {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes mandala-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mandala-spin {
+  animation: mandala-spin var(--spin-duration, 240s) linear infinite;
+  will-change: transform;
+}
+
+@keyframes aurora-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -3%, 0) scale(1.06);
+  }
+}
+
+@keyframes aurora-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.02);
+  }
+  50% {
+    transform: translate3d(-5%, 4%, 0) scale(1);
+  }
+}
+
+@keyframes aurora-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(3%, 5%, 0);
+  }
+}
+
+@keyframes aurora-d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-3%, -4%, 0) scale(1.05);
+  }
+}
+
+.aurora-blob {
+  will-change: transform;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  contain: layout style;
+}
+
+.aurora-a {
+  animation: aurora-a 55s ease-in-out infinite;
+  will-change: transform;
+}
+.aurora-b {
+  animation: aurora-b 68s ease-in-out infinite;
+  will-change: transform;
+}
+.aurora-c {
+  animation: aurora-c 75s ease-in-out infinite;
+  will-change: transform;
+}
+.aurora-d {
+  animation: aurora-d 48s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* —— Sky veils (gradient-only, no blur) —— */
+.sky-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background: radial-gradient(
+    60% 40% at 70% 15%,
+    rgba(230, 194, 128, 0.08) 0%,
+    transparent 55%
+  );
+}
+
+.sky-veil[data-chapter="1"] {
+  opacity: 0.15;
+}
+
+.sky-veil[data-chapter="5"] {
+  opacity: 0.7;
+  background:
+    radial-gradient(50% 35% at 50% 12%, rgba(255, 230, 184, 0.35) 0%, transparent 60%),
+    radial-gradient(45% 30% at 15% 70%, rgba(242, 214, 201, 0.22) 0%, transparent 55%);
+}
+
+.sky-veil-drift {
+  animation: sky-veil-drift 40s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes sky-veil-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(-1.5%, 1%, 0);
+    opacity: 0.7;
+  }
+}
+
+.horizon-glow {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 50%;
+  background: radial-gradient(
+    65% 75% at 50% 100%,
+    rgba(230, 194, 128, 0.22) 0%,
+    transparent 70%
+  );
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.horizon-breathe {
+  animation: horizon-breathe 6.5s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes horizon-breathe {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.dawn-sun {
+  position: absolute;
+  left: 50%;
+  top: -2%;
+  width: 55vmax;
+  height: 40vmax;
+  margin-left: -27.5vmax;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255, 236, 196, 0.75) 0%,
+    rgba(243, 223, 174, 0.35) 32%,
+    rgba(230, 194, 128, 0.12) 55%,
+    transparent 72%
+  );
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.dawn-sun-breathe {
+  animation: dawn-sun-breathe 8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes dawn-sun-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+.dawn-wash {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 248, 240, 0.15) 0%, transparent 35%),
+    linear-gradient(0deg, rgba(232, 180, 160, 0.18) 0%, transparent 40%);
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.8;
+}
+
+.dawn-wash-drift {
+  animation: dawn-wash-drift 18s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes dawn-wash-drift {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.dawn-rim {
+  position: absolute;
+  inset-inline: 8%;
+  bottom: 0;
+  height: 28%;
+  background: radial-gradient(
+    80% 100% at 50% 100%,
+    rgba(196, 140, 110, 0.16) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+/* —— Liquid glass continue —— */
+.liquid-glass {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-width: 9.5rem;
+  padding: 0.85rem 1.6rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 194, 128, 0.28);
+  background:
+    linear-gradient(
+      155deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(230, 194, 128, 0.1) 42%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(230, 194, 128, 0.12);
+  backdrop-filter: blur(14px) saturate(1.35);
+  -webkit-backdrop-filter: blur(14px) saturate(1.35);
+  color: var(--gold);
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transform: translateZ(0);
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.liquid-glass:hover {
+  border-color: rgba(230, 194, 128, 0.45);
+  box-shadow:
+    0 10px 32px rgba(0, 0, 0, 0.28),
+    0 0 24px rgba(230, 194, 128, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.liquid-glass:active {
+  transform: translateZ(0) scale(0.98);
+}
+
+.liquid-glass-shine {
+  position: absolute;
+  inset: -40% -20%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.22) 48%,
+    transparent 62%
+  );
+  opacity: 0.35;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.liquid-glass-alive .liquid-glass-shine {
+  animation: liquid-shine 4.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.liquid-glass-alive {
+  animation: liquid-breathe 3.6s ease-in-out infinite;
+}
+
+@keyframes liquid-shine {
+  0%,
+  100% {
+    transform: translate3d(-30%, 0, 0) rotate(8deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate3d(30%, 0, 0) rotate(8deg);
+    opacity: 0.45;
+  }
+}
+
+@keyframes liquid-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 8px 28px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(230, 194, 128, 0.12);
+  }
+  50% {
+    box-shadow:
+      0 10px 34px rgba(0, 0, 0, 0.26),
+      0 0 20px rgba(230, 194, 128, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.34),
+      inset 0 -1px 0 rgba(230, 194, 128, 0.16);
+  }
+}
+
+.liquid-glass-label {
+  position: relative;
+  z-index: 1;
+  font-size: 10px;
+  color: var(--gold);
+  opacity: 0.92;
+}
+
+.liquid-glass-hint {
+  position: relative;
+  z-index: 1;
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  color: var(--silver);
+  opacity: 0.45;
+  text-transform: uppercase;
+  max-width: 14rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  /* Keep glass readable; slightly lighter blur on small GPUs */
+  .liquid-glass {
+    backdrop-filter: blur(10px) saturate(1.25);
+    -webkit-backdrop-filter: blur(10px) saturate(1.25);
+  }
+}
+
+@keyframes mote-drift {
+  0% {
+    transform: translate3d(0, 12px, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(8px, -100vh, 0);
+    opacity: 0;
+  }
+}
+
+.mote-drift {
+  animation: mote-drift var(--mote-duration, 28s) linear infinite;
+  animation-delay: var(--mote-delay, 0s);
+  will-change: transform;
+}
+
+@keyframes shoot-star {
+  0% {
+    transform: translate3d(0, 0, 0) scaleX(0.2);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(220px, 110px, 0) scaleX(1);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  animation: shoot-star 700ms ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes halo-breathe {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.22;
+    transform: scale(1.05);
+  }
+}
+
+.halo-breathe {
+  animation: halo-breathe 3.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 1.5px solid rgba(230, 194, 128, 0.7);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  .gold-text-sheen,
+  .mandala-spin,
+  .aurora-a,
+  .aurora-b,
+  .aurora-c,
+  .aurora-d,
+  .mote-drift,
+  .shooting-star,
+  .halo-breathe,
+  .sky-veil-drift,
+  .horizon-breathe,
+  .dawn-sun-breathe,
+  .dawn-wash-drift,
+  .liquid-glass-alive,
+  .liquid-glass-alive .liquid-glass-shine {
+    animation: none !important;
+  }
 }
