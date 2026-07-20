@@ -121,14 +121,14 @@ export default function Experience() {
       {isBirthday && !letterMode && (
         <button
           type="button"
-          className="font-ui absolute bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] left-[max(1rem,env(safe-area-inset-left))] z-30 max-w-[42vw] text-left opacity-50 transition-opacity hover:opacity-80"
-          style={{ color: "#ffffff", fontSize: "10px" }}
+          className="letter-chip"
+          aria-label={ui.letterModeOpen}
           onClick={(e) => {
             e.stopPropagation();
             setLetterMode(true);
           }}
         >
-          {ui.letterModeOpen}
+          read as letter
         </button>
       )}
 

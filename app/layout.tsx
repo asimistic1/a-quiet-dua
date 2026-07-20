@@ -4,7 +4,7 @@ import "./globals.css";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-serif",
   display: "swap",
 });

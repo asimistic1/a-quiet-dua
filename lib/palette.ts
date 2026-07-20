@@ -39,12 +39,13 @@ export const frameOpacity = [0, 0.3, 0.06, 0.26, 0.26, 0.32] as const;
 export function skyGradient(chapter: number): string {
   switch (chapter) {
     case 0:
-      // Watercolor ocean — birthday opener
+      // Richer watercolor ocean — birthday opener
       return [
-        `radial-gradient(90% 70% at 50% 35%, rgba(232,244,252,0.55) 0%, transparent 48%)`,
-        `radial-gradient(70% 55% at 20% 70%, rgba(126,184,232,0.5) 0%, transparent 55%)`,
-        `radial-gradient(65% 50% at 85% 25%, rgba(74,144,200,0.45) 0%, transparent 50%)`,
-        `radial-gradient(120% 100% at 50% 50%, #8EC5EA 0%, #5BA3D9 28%, #2E6FB0 58%, #1B4F8A 82%, #0E2A5C 100%)`,
+        `radial-gradient(95% 75% at 50% 8%, rgba(255,255,255,0.55) 0%, rgba(200,235,255,0.25) 28%, transparent 55%)`,
+        `radial-gradient(70% 55% at 12% 78%, rgba(100,170,230,0.55) 0%, transparent 58%)`,
+        `radial-gradient(65% 50% at 92% 22%, rgba(130,110,190,0.4) 0%, transparent 52%)`,
+        `radial-gradient(80% 60% at 70% 85%, rgba(40,90,160,0.35) 0%, transparent 50%)`,
+        `radial-gradient(120% 100% at 50% 50%, #A8D4F5 0%, #6BB0E0 22%, #3D84C4 48%, #1F5FA8 72%, #0E2A5C 100%)`,
       ].join(", ");
     case 1:
       return [

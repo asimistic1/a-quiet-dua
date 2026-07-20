@@ -304,6 +304,8 @@ export default function UnderwaterWorld({ active }: Props) {
     >
       {/* Watercolor paper grain bloom */}
       <div className="uw-watercolor absolute inset-0" />
+      <div className={`uw-rays absolute inset-0 ${reduced ? "" : "uw-rays-drift"}`} />
+      <div className={`uw-caustics absolute inset-0 ${reduced ? "" : "uw-caustics-drift"}`} />
 
       <Bubbles reduced={!!reduced} />
 

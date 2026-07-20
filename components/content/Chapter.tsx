@@ -31,16 +31,16 @@ export default function Chapter({ chapter }: Props) {
         animate="visible"
         exit="exit"
       >
-        <div className="relative flex w-full max-w-[40ch] flex-col items-center text-center">
+        <div className="birthday-panel relative flex w-full max-w-[40ch] flex-col items-center text-center">
           <motion.h1
             variants={chapterBlock(reduced)}
-            className="birthday-title mb-6"
+            className="birthday-title mb-5"
           >
             {copy.title}
           </motion.h1>
 
           {copy.tagline && (
-            <motion.p variants={chapterBlock(reduced)} className="birthday-tagline mb-8">
+            <motion.p variants={chapterBlock(reduced)} className="birthday-tagline mb-7">
               {copy.tagline}
             </motion.p>
           )}

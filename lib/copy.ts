@@ -11,11 +11,11 @@ export const chapters: ChapterCopy[] = [
   {
     englishOnly: true,
     urdu: [],
-    title: "Happy 22nd Birthday, Javeria",
+    title: "Happy 22nd Birthday, Javeria Maqbool",
     tagline:
       "July 20, 2004 — The day this world was graced with you, and my life's greatest Naimat was born into the arms of your Ammi Jan.",
     english:
-      "Happy 22nd Birthday, Javeria. May Allah keep you in His deepest protection, place endless Barakah in your third year of nursing, and make the knowledge you seek a source of light. Above all, may He grant your heart absolute ease, peace, and Sakinah in every way.",
+      "Happy 22nd Birthday, Javeria. May Allah keep you secure in His Hifz, bless the noble knowledge you gather in the wards this year, and illuminate your path ahead. My deepest, quietest prayer is that He grants your heart absolute ease, unwavering peace, and profound Sakinah in every matter of your life.",
     micro: "[ tap — a few quiet words ]",
   },
   {
@@ -56,7 +56,7 @@ export const chapters: ChapterCopy[] = [
 export const ui = {
   tapPrompt: "[ tap — a few quiet words ]",
   continue: "continue",
-  letterModeOpen: "read as one letter · مکمل خط",
+  letterModeOpen: "read as letter",
   letterModeReturn: "return",
   letterModeTitle: "A Quiet Dua",
   back: "Go back one chapter",
