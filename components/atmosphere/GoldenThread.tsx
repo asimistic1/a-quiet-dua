@@ -7,7 +7,7 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import { useEffect, useId, useState } from "react";
-import { ui } from "@/lib/copy";
+import { THREAD_STATE, ui } from "@/lib/copy";
 import { durations } from "@/lib/motion";
 import { palette } from "@/lib/palette";
 
@@ -265,9 +265,8 @@ function EkgState({ reduced }: { reduced: boolean }) {
 export default function GoldenThread({ chapter }: Props) {
   const reducedMotion = useReducedMotion();
   const reduced = !!reducedMotion;
-  // Birthday (0) has no thread; night chapters map 1→0 … 5→4
-  const threadChapter = chapter - 1;
-  const show = chapter >= 1;
+  const threadChapter = THREAD_STATE[chapter] ?? null;
+  const show = threadChapter !== null;
 
   return (
     <div
@@ -288,7 +287,7 @@ export default function GoldenThread({ chapter }: Props) {
           style={{ filter: GLOW }}
         >
           <AnimatePresence mode="sync">
-            {show && threadChapter >= 0 && threadChapter <= 4 && (
+            {show && threadChapter !== null && (
               <motion.g
                 key={threadChapter}
                 initial={{ opacity: 0 }}

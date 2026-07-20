@@ -803,8 +803,318 @@ body {
     radial-gradient(45% 30% at 20% 75%, rgba(126, 184, 232, 0.3) 0%, transparent 55%);
 }
 
-.sky-veil[data-chapter="5"] {
+.sky-veil[data-chapter="3"] {
+  opacity: 0.85;
+  background:
+    radial-gradient(60% 42% at 50% 100%, rgba(230, 194, 128, 0.28) 0%, transparent 58%),
+    radial-gradient(50% 35% at 50% 10%, rgba(40, 55, 100, 0.3) 0%, transparent 55%);
+}
+
+/* —— Promise Dawn (screen 4) —— */
+.pd-veil {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.pd-veil-top {
+  width: 90vmax;
+  height: 55vmax;
+  left: 50%;
+  top: -20%;
+  margin-left: -45vmax;
+  background: radial-gradient(
+    ellipse,
+    rgba(40, 60, 120, 0.45) 0%,
+    rgba(30, 40, 80, 0.2) 45%,
+    transparent 70%
+  );
+}
+
+.pd-veil-side {
+  width: 70vmax;
+  height: 55vmax;
+  right: -25%;
+  bottom: 10%;
+  background: radial-gradient(
+    ellipse,
+    rgba(90, 55, 85, 0.4) 0%,
+    rgba(60, 40, 70, 0.18) 45%,
+    transparent 70%
+  );
+}
+
+.pd-veil-drift-a {
+  animation: pd-drift-a 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.pd-veil-drift-b {
+  animation: pd-drift-b 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes pd-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, 3%, 0) scale(1.06);
+  }
+}
+
+@keyframes pd-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-3%, -2%, 0) scale(1.05);
+  }
+}
+
+.pd-sun {
+  position: absolute;
+  left: 50%;
+  bottom: -8%;
+  width: 70vmax;
+  height: 45vmax;
+  margin-left: -35vmax;
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgba(243, 223, 174, 0.4) 0%,
+    rgba(230, 194, 128, 0.18) 35%,
+    transparent 68%
+  );
+  pointer-events: none;
+}
+
+.pd-sun-breathe {
+  animation: pd-sun 5.5s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes pd-sun {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.pd-horizon {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  bottom: 28%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(230, 194, 128, 0.45) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
   opacity: 0.55;
+}
+
+.pd-horizon-breathe {
+  animation: pd-horizon 6s ease-in-out infinite;
+  will-change: opacity;
+}
+
+@keyframes pd-horizon {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+.pd-ribbon {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  top: 35%;
+  height: 22%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(60, 70, 130, 0.18) 30%,
+    rgba(120, 70, 100, 0.16) 55%,
+    rgba(230, 194, 128, 0.12) 78%,
+    transparent 100%
+  );
+  mix-blend-mode: screen;
+  transform: skewY(-3deg);
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+.pd-ribbon-drift {
+  animation: pd-ribbon 12s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes pd-ribbon {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: skewY(-3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: skewY(-2deg) translate3d(1.5%, -1%, 0);
+  }
+}
+
+.pd-mote {
+  position: absolute;
+  bottom: 5%;
+  border-radius: 50%;
+  background: #e6c280;
+  box-shadow: 0 0 6px rgba(230, 194, 128, 0.65);
+  opacity: 0;
+  animation: pd-mote-rise var(--p-dur, 12s) linear infinite;
+  animation-delay: var(--p-delay, 0s);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+@keyframes pd-mote-rise {
+  0% {
+    transform: translate3d(0, 40px, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(10px, -55vh, 0);
+    opacity: 0;
+  }
+}
+
+.pd-edge {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(95% 75% at 50% 48%, transparent 38%, rgba(0, 0, 0, 0.32) 100%),
+    linear-gradient(0deg, rgba(230, 194, 128, 0.06) 0%, transparent 28%);
+  pointer-events: none;
+}
+
+.promise-urdu {
+  font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.45rem, 5.5vw, 2rem);
+  line-height: 2.15;
+  letter-spacing: 0 !important;
+  color: #e6c280;
+  max-width: 20ch;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
+  min-height: 2.8em;
+}
+
+.promise-body {
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(1rem, 2.9vw, 1.15rem);
+  line-height: 1.8;
+  color: #d8d4dc;
+  max-width: 38ch;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
+.promise-panel {
+  padding: 1.2rem 0.95rem;
+  border-radius: 1rem;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 14, 30, 0.4) 0%,
+    rgba(10, 14, 30, 0.14) 55%,
+    transparent 78%
+  );
+}
+
+.open-door-body {
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(0.92rem, 2.6vw, 1.05rem);
+  line-height: 1.85;
+  color: #d4d0d8;
+  max-width: 34ch;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
+.quiet-textarea {
+  border: none;
+  outline: none;
+  border-radius: 14px;
+  padding: 0.95rem 1rem;
+  background: rgba(0, 0, 0, 0.18);
+  color: #e8e4ea;
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  line-height: 1.7;
+  caret-color: #e6c280;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  transition: opacity 0.8s ease, background 0.35s ease;
+}
+
+.quiet-textarea::placeholder {
+  color: rgba(200, 190, 205, 0.35);
+}
+
+.quiet-textarea:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(230, 194, 128, 0.22);
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.quiet-textarea:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.quiet-send {
+  border: none;
+  background: transparent;
+  color: #e6c280;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  transition: opacity 0.35s ease;
+}
+
+.quiet-send:hover:not(:disabled) {
+  opacity: 1;
+}
+
+.quiet-send:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.quiet-send:focus-visible {
+  outline: 1.5px solid rgba(230, 194, 128, 0.55);
+  outline-offset: 4px;
+}
+
+.sky-veil[data-chapter="4"] {
+  opacity: 0.9;
+  background:
+    radial-gradient(60% 42% at 50% 100%, rgba(243, 223, 174, 0.3) 0%, transparent 58%),
+    radial-gradient(50% 35% at 50% 8%, rgba(45, 60, 110, 0.28) 0%, transparent 55%);
 }
 
 .sky-veil-drift {
@@ -1450,6 +1760,12 @@ body {
   .wn-weight-breathe,
   .wn-ring-pulse,
   .wn-ash,
+  .pd-veil-drift-a,
+  .pd-veil-drift-b,
+  .pd-sun-breathe,
+  .pd-horizon-breathe,
+  .pd-ribbon-drift,
+  .pd-mote,
   .mote-drift,
   .shooting-star,
   .halo-breathe,

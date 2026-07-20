@@ -6,11 +6,11 @@ import AuroraMesh from "@/components/atmosphere/AuroraMesh";
 import Background from "@/components/atmosphere/Background";
 import Crescent from "@/components/atmosphere/Crescent";
 import DustMotes from "@/components/atmosphere/DustMotes";
-import EkgPulse from "@/components/atmosphere/EkgPulse";
 import GoldenThread from "@/components/atmosphere/GoldenThread";
 import Grain from "@/components/atmosphere/Grain";
 import Mandala from "@/components/atmosphere/Mandala";
 import OrnamentFrame from "@/components/atmosphere/OrnamentFrame";
+import PromiseDawn from "@/components/atmosphere/PromiseDawn";
 import QuietNight from "@/components/atmosphere/QuietNight";
 import WeightNight from "@/components/atmosphere/WeightNight";
 import ShootingStar from "@/components/atmosphere/ShootingStar";
@@ -30,12 +30,14 @@ export default function Experience() {
   const isBirthday = chapter === CHAPTER.birthday;
   const isQuiet = chapter === CHAPTER.opening;
   const isWeight = chapter === CHAPTER.apology;
-  const isLast = chapter === CHAPTER.promise;
+  const isPromise = chapter === CHAPTER.promise;
+  const isOpenDoor = chapter === CHAPTER.openDoor;
+  const isLast = isOpenDoor;
   const isLight = isBirthday;
   const showAmbientMandala =
     chapter === CHAPTER.opening ||
-    chapter === CHAPTER.years ||
-    chapter === CHAPTER.promise;
+    chapter === CHAPTER.promise ||
+    chapter === CHAPTER.openDoor;
 
   const advance = useCallback(() => {
     if (letterMode || isLast) return;
@@ -54,6 +56,15 @@ export default function Experience() {
         return;
       }
 
+      // Don't hijack typing on the open-door feedback screen
+      if (isOpenDoor) {
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          back();
+        }
+        return;
+      }
+
       if (e.key === "ArrowRight" || e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         advance();
@@ -65,7 +76,7 @@ export default function Experience() {
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [advance, back, letterMode]);
+  }, [advance, back, letterMode, isOpenDoor]);
 
   return (
     <main
@@ -80,6 +91,7 @@ export default function Experience() {
         <UnderwaterWorld active={isBirthday} />
         <QuietNight active={isQuiet} />
         <WeightNight active={isWeight} />
+        <PromiseDawn active={isPromise || isOpenDoor} />
         <AuroraMesh chapter={chapter} />
         <div
           className="absolute inset-0 transition-opacity duration-[1600ms]"
@@ -88,10 +100,12 @@ export default function Experience() {
           <Mandala
             mode="ambient"
             drawIn={false}
-            opacity={isQuiet ? 0.14 : undefined}
-            stroke={isQuiet ? "#E6C280" : undefined}
-            spinDuration={isQuiet ? 120 : undefined}
-            size={isQuiet ? "150vmin" : undefined}
+            opacity={
+              isQuiet ? 0.14 : isOpenDoor ? 0.1 : isPromise ? 0.08 : undefined
+            }
+            stroke={isQuiet || isPromise || isOpenDoor ? "#E6C280" : undefined}
+            spinDuration={isQuiet ? 120 : isOpenDoor ? 160 : undefined}
+            size={isQuiet ? "150vmin" : isOpenDoor ? "135vmin" : undefined}
           />
         </div>
         <Stars chapter={chapter} />
@@ -100,7 +114,6 @@ export default function Experience() {
         <OrnamentFrame chapter={chapter} />
         <GoldenThread chapter={chapter} />
         <DustMotes chapter={chapter} />
-        <EkgPulse chapter={chapter} />
         <Grain />
       </div>
 

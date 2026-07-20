@@ -16,7 +16,7 @@ export default function Background({ chapter }: Props) {
   const [layers, setLayers] = useState<Layer[]>([{ id: 0, chapter }]);
   const [tracked, setTracked] = useState(chapter);
   const isDawn = chapter === 0;
-  const isPredawn = chapter === 5;
+  const isPredawn = chapter === 3 || chapter === 4;
 
   if (chapter !== tracked) {
     setTracked(chapter);
@@ -70,7 +70,9 @@ export default function Background({ chapter }: Props) {
             ? ""
             : chapter === 1 || chapter === 2
               ? "sky-veil-fast"
-              : "sky-veil-drift"
+              : chapter === 3 || chapter === 4
+                ? "sky-veil-fast"
+                : "sky-veil-drift"
         }`}
         data-chapter={chapter}
       />

@@ -31,9 +31,9 @@ export const palette = {
 export type PaletteKey = keyof typeof palette;
 
 /** Stars fade across night chapters; birthday (0) uses underwater sparkles instead */
-export const starOpacity = [0, 0.85, 0.4, 0.35, 0.3, 0.12] as const;
+export const starOpacity = [0, 0.85, 0.4, 0.18, 0.22] as const;
 
-export const frameOpacity = [0, 0.48, 0.3, 0.26, 0.26, 0.32] as const;
+export const frameOpacity = [0, 0.48, 0.3, 0.38, 0.42] as const;
 
 /** Precomposed multi-stop skies — one paint layer, no blur filters. */
 export function skyGradient(chapter: number): string {
@@ -67,22 +67,23 @@ export function skyGradient(chapter: number): string {
         `radial-gradient(120% 100% at 50% 42%, #1A1420 0%, #14101A 32%, #0E0C14 60%, #08070C 100%)`,
       ].join(", ");
     case 3:
+      // Promise — richer pre-dawn indigo → mauve + gold breath
       return [
-        `radial-gradient(80% 60% at 30% 20%, rgba(14,59,51,0.55) 0%, transparent 50%)`,
-        `radial-gradient(70% 50% at 80% 70%, rgba(16,27,51,0.4) 0%, transparent 55%)`,
-        `linear-gradient(155deg, #0E3B33 0%, #0C2224 42%, #14161E 100%)`,
+        `radial-gradient(75% 50% at 50% 100%, rgba(230,194,128,0.28) 0%, rgba(169,131,75,0.1) 35%, transparent 58%)`,
+        `radial-gradient(70% 55% at 50% 0%, rgba(40,55,100,0.55) 0%, transparent 50%)`,
+        `radial-gradient(60% 45% at 15% 60%, rgba(90,50,80,0.35) 0%, transparent 55%)`,
+        `radial-gradient(55% 40% at 88% 35%, rgba(60,70,120,0.3) 0%, transparent 52%)`,
+        `linear-gradient(180deg, #121C38 0%, #1E2744 38%, #32283C 72%, #3A2E3F 100%)`,
       ].join(", ");
     case 4:
-      return [
-        `radial-gradient(90% 70% at 50% 30%, rgba(10,42,38,0.9) 0%, transparent 60%)`,
-        `radial-gradient(100% 85% at 50% 45%, #0A2A26 0%, #0B1C1A 55%, #071210 100%)`,
-      ].join(", ");
-    case 5:
     default:
+      // Open door — same family, slightly warmer / more open
       return [
-        `radial-gradient(70% 45% at 50% 100%, rgba(230,194,128,0.18) 0%, transparent 55%)`,
-        `radial-gradient(85% 55% at 50% 0%, rgba(16,27,51,0.85) 0%, transparent 50%)`,
-        `linear-gradient(180deg, #101B33 0%, #2A2438 55%, #3A2E3F 100%)`,
+        `radial-gradient(80% 55% at 50% 100%, rgba(243,223,174,0.32) 0%, rgba(230,194,128,0.12) 38%, transparent 60%)`,
+        `radial-gradient(70% 55% at 50% 0%, rgba(45,60,110,0.5) 0%, transparent 52%)`,
+        `radial-gradient(60% 45% at 12% 55%, rgba(100,55,90,0.32) 0%, transparent 55%)`,
+        `radial-gradient(55% 40% at 90% 40%, rgba(70,80,140,0.28) 0%, transparent 52%)`,
+        `linear-gradient(180deg, #141E3C 0%, #222A48 36%, #352A40 70%, #3F3344 100%)`,
       ].join(", ");
   }
 }

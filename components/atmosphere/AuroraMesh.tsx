@@ -23,6 +23,8 @@ export default function AuroraMesh({ chapter }: Props) {
   const isBirthday = chapter === 0;
   const isQuiet = chapter === 1;
   const isWeight = chapter === 2;
+  const isPromise = chapter === 3;
+  const isOpenDoor = chapter === 4;
 
   const orbs = useMemo<Orb[]>(() => {
     if (isBirthday) {
@@ -59,6 +61,45 @@ export default function AuroraMesh({ chapter }: Props) {
             top: "40%",
             background: `radial-gradient(circle, ${palette.lavenderSea} 0%, rgba(184,164,212,0.3) 35%, transparent 70%)`,
             opacity: 0.28,
+          },
+        },
+      ];
+    }
+
+    if (isPromise || isOpenDoor) {
+      return [
+        {
+          className: "aurora-orb aurora-fast-a",
+          style: {
+            width: "75vmax",
+            height: "75vmax",
+            left: "50%",
+            bottom: "-30%",
+            marginLeft: "-37.5vmax",
+            background: `radial-gradient(circle, ${palette.brightGold} 0%, rgba(230,194,128,0.35) 30%, transparent 68%)`,
+            opacity: isOpenDoor ? 0.62 : 0.55,
+          },
+        },
+        {
+          className: "aurora-orb aurora-fast-b",
+          style: {
+            width: "68vmax",
+            height: "68vmax",
+            left: "-18%",
+            top: "-10%",
+            background: `radial-gradient(circle, #2a3a78 0%, rgba(30,45,100,0.5) 35%, transparent 70%)`,
+            opacity: isOpenDoor ? 0.64 : 0.58,
+          },
+        },
+        {
+          className: "aurora-orb aurora-fast-c",
+          style: {
+            width: "58vmax",
+            height: "58vmax",
+            right: "-16%",
+            top: "30%",
+            background: `radial-gradient(circle, #6a4060 0%, rgba(80,45,75,0.4) 35%, transparent 70%)`,
+            opacity: isOpenDoor ? 0.52 : 0.48,
           },
         },
       ];
@@ -175,7 +216,7 @@ export default function AuroraMesh({ chapter }: Props) {
         },
       },
     ];
-  }, [isBirthday, isQuiet, isWeight]);
+  }, [isBirthday, isQuiet, isWeight, isPromise, isOpenDoor]);
 
   return (
     <motion.div

@@ -6,6 +6,7 @@ export type ChapterCopy = {
   tagline?: string;
   urduTagline?: string;
   englishOnly?: boolean;
+  isFeedback?: boolean;
 };
 
 export const chapters: ChapterCopy[] = [
@@ -38,24 +39,19 @@ export const chapters: ChapterCopy[] = [
     micro: "[ tap — a few quiet words ]",
   },
   {
-    urdu: ["نرسری سے ایف ایس سی تک — پندرہ برس، ایک ہی راستہ۔"],
+    englishOnly: true,
+    urdu: [],
+    urduTagline: "٣ جون ٢٠٢٥ کا وعدہ آج بھی قائم ہے",
     english:
-      "Nursery to FSc. Chalk dust and morning assemblies, winter uniforms and exam-week nerves — fifteen years of the same small world. I remember more of it than I could ever say. And that memory asks for nothing today; it only wanted to be honored.",
+      "I have not forgotten June 3, 2025, nor the pure, Halal path we agreed upon. My promise remains an unbreakable vow. I will only bring the proposal to your family when you are truly ready and grant me your explicit permission. In the silence until that day, I will dedicate myself to matching your caliber, respecting your values, and becoming a man fully capable of honoring your dreams.",
+    micro: "[ tap — a few quiet words ]",
   },
   {
-    urdu: [
-      "اللہ آپ کے ہاتھوں میں شفا اور آپ کے علم میں برکت عطا فرمائے۔",
-    ],
+    englishOnly: true,
+    isFeedback: true,
+    urdu: [],
     english:
-      "Third year at DHQ Sahiwal — long shifts, heavy books, learning to steady other people through their worst days. That takes a strength most people never have to find. The journey is yours alone, and it deserves its own salute. May every patient you care for leave a silent dua in your favor.",
-  },
-  {
-    urdu: [
-      "٣ جون کا وعدہ قائم ہے — صحیح وقت پر، صحیح طریقے سے۔",
-      "جو حد آپ نے کھینچی، وہی میرا ادب ہے — جو وقت آپ نے مانگا، وہی میری دعا ہے۔",
-    ],
-    english:
-      "The promise of June 3rd stands exactly where you placed it: the proper way, at the right time, through your family's door. Nothing before that, and nothing less than that. Until then your space is yours — this page does not ask you to reply. It only keeps its word.",
+      "If you want  to share a thought, I am here to listen. If not, I will continue to respect your silence. Your words are safe here.",
   },
 ];
 
@@ -69,17 +65,27 @@ export const ui = {
   audioPlay: "Play ambient sound",
   audioMute: "Mute ambient sound",
   progress: "Chapter progress",
+  sendQuietly: "[ Send quietly ]",
+  sending: "[ Sending… ]",
+  sent: "[ Sent. Thank you. ]",
   milestones: ["NURSERY", "PRIMARY", "MIDDLE", "MATRIC", "FSC"] as const,
 } as const;
 
 export const TOTAL_CHAPTERS = chapters.length;
 
-/** Chapter index helpers after birthday moved to first */
 export const CHAPTER = {
   birthday: 0,
   opening: 1,
   apology: 2,
-  years: 3,
-  healer: 4,
-  promise: 5,
+  promise: 3,
+  openDoor: 4,
 } as const;
+
+/** Maps experience chapter → GoldenThread visual state (null = hidden) */
+export const THREAD_STATE: Record<number, number | null> = {
+  0: null,
+  1: 0,
+  2: 1,
+  3: 4,
+  4: 4,
+};

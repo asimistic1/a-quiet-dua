@@ -10,7 +10,7 @@ type Props = {
 
 export default function ShootingStar({ chapter }: Props) {
   const reduced = useReducedMotion();
-  const enabled = (chapter === 1 || chapter === 3) && !reduced;
+  const enabled = chapter === 1 && !reduced;
   const [shot, setShot] = useState<{
     id: number;
     top: number;

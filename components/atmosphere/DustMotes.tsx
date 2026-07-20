@@ -20,8 +20,9 @@ type Mote = {
 
 export default function DustMotes({ chapter }: Props) {
   const reduced = useReducedMotion();
-  const isPlain = chapter === 2;
-  const isYears = chapter === 3;
+  // Skip birthday, weight, promise, open-door (dedicated atmospheres)
+  const skip =
+    chapter === 0 || chapter === 2 || chapter === 3 || chapter === 4;
 
   const motes = useMemo<Mote[]>(() => {
     const seeded = (n: number) => {
@@ -29,19 +30,18 @@ export default function DustMotes({ chapter }: Props) {
       return x - Math.floor(x);
     };
 
-    const count = isYears ? 14 : 16;
-    return Array.from({ length: count }, (_, i) => ({
+    return Array.from({ length: 16 }, (_, i) => ({
       id: i,
       left: seeded(i + 1) * 100,
       size: 1 + seeded(i + 20) * 1.2,
       duration: 22 + seeded(i + 40) * 18,
       delay: seeded(i + 60) * 20,
-      opacity: isYears ? 0.08 : 0.1 + seeded(i + 80) * 0.15,
-      color: isYears ? palette.silver : palette.gold,
+      opacity: 0.1 + seeded(i + 80) * 0.15,
+      color: palette.gold,
     }));
-  }, [isYears]);
+  }, []);
 
-  if (isPlain || reduced || chapter === 0) return null;
+  if (skip || reduced) return null;
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>

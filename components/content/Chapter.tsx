@@ -5,6 +5,7 @@ import { CHAPTER, chapters } from "@/lib/copy";
 import { chapterBlock, chapterContainer } from "@/lib/motion";
 import { palette } from "@/lib/palette";
 import IlluminatedEnglish from "@/components/content/IlluminatedEnglish";
+import OpenDoorChapter from "@/components/content/OpenDoorChapter";
 import OrnamentDivider from "@/components/content/OrnamentDivider";
 
 type Props = {
@@ -18,7 +19,13 @@ export default function Chapter({ chapter }: Props) {
   const isBirthday = chapter === CHAPTER.birthday;
   const isQuiet = chapter === CHAPTER.opening;
   const isWeight = chapter === CHAPTER.apology;
+  const isPromise = chapter === CHAPTER.promise;
+  const isOpenDoor = chapter === CHAPTER.openDoor;
   const bodyColor = palette.silver;
+
+  if (isOpenDoor && copy.isFeedback) {
+    return <OpenDoorChapter message={copy.english} />;
+  }
 
   if (isBirthday && copy.englishOnly) {
     return (
@@ -91,6 +98,34 @@ export default function Chapter({ chapter }: Props) {
             </motion.p>
           )}
           <motion.p variants={chapterBlock(reduced)} className="weight-body">
+            {copy.english}
+          </motion.p>
+        </div>
+      </motion.article>
+    );
+  }
+
+  if (isPromise && copy.englishOnly) {
+    return (
+      <motion.article
+        className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 pb-24 pt-12"
+        variants={chapterContainer(reduced)}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <div className="promise-panel relative flex w-full max-w-[40ch] flex-col items-center text-center">
+          {copy.urduTagline && (
+            <motion.p
+              variants={chapterBlock(reduced)}
+              className="promise-urdu mb-8"
+              dir="rtl"
+              lang="ur"
+            >
+              {copy.urduTagline}
+            </motion.p>
+          )}
+          <motion.p variants={chapterBlock(reduced)} className="promise-body">
             {copy.english}
           </motion.p>
         </div>
