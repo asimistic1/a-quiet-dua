@@ -12,6 +12,7 @@ import Grain from "@/components/atmosphere/Grain";
 import Mandala from "@/components/atmosphere/Mandala";
 import OrnamentFrame from "@/components/atmosphere/OrnamentFrame";
 import QuietNight from "@/components/atmosphere/QuietNight";
+import WeightNight from "@/components/atmosphere/WeightNight";
 import ShootingStar from "@/components/atmosphere/ShootingStar";
 import Stars from "@/components/atmosphere/Stars";
 import UnderwaterWorld from "@/components/atmosphere/UnderwaterWorld";
@@ -28,6 +29,7 @@ export default function Experience() {
   const [letterMode, setLetterMode] = useState(false);
   const isBirthday = chapter === CHAPTER.birthday;
   const isQuiet = chapter === CHAPTER.opening;
+  const isWeight = chapter === CHAPTER.apology;
   const isLast = chapter === CHAPTER.promise;
   const isLight = isBirthday;
   const showAmbientMandala =
@@ -77,6 +79,7 @@ export default function Experience() {
         <Background chapter={chapter} />
         <UnderwaterWorld active={isBirthday} />
         <QuietNight active={isQuiet} />
+        <WeightNight active={isWeight} />
         <AuroraMesh chapter={chapter} />
         <div
           className="absolute inset-0 transition-opacity duration-[1600ms]"

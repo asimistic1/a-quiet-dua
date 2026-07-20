@@ -22,7 +22,7 @@ export default function AuroraMesh({ chapter }: Props) {
   const reduced = useReducedMotion();
   const isBirthday = chapter === 0;
   const isQuiet = chapter === 1;
-  const isPlain = chapter === 2;
+  const isWeight = chapter === 2;
 
   const orbs = useMemo<Orb[]>(() => {
     if (isBirthday) {
@@ -59,6 +59,44 @@ export default function AuroraMesh({ chapter }: Props) {
             top: "40%",
             background: `radial-gradient(circle, ${palette.lavenderSea} 0%, rgba(184,164,212,0.3) 35%, transparent 70%)`,
             opacity: 0.28,
+          },
+        },
+      ];
+    }
+
+    if (isWeight) {
+      return [
+        {
+          className: "aurora-orb aurora-fast-b",
+          style: {
+            width: "72vmax",
+            height: "72vmax",
+            left: "-20%",
+            top: "-12%",
+            background: `radial-gradient(circle, #6a4058 0%, rgba(80,40,60,0.5) 35%, transparent 70%)`,
+            opacity: 0.7,
+          },
+        },
+        {
+          className: "aurora-orb aurora-fast-a",
+          style: {
+            width: "64vmax",
+            height: "64vmax",
+            right: "-18%",
+            bottom: "-14%",
+            background: `radial-gradient(circle, #3a3048 0%, rgba(40,30,55,0.5) 35%, transparent 70%)`,
+            opacity: 0.62,
+          },
+        },
+        {
+          className: "aurora-orb aurora-fast-c",
+          style: {
+            width: "50vmax",
+            height: "50vmax",
+            left: "28%",
+            top: "35%",
+            background: `radial-gradient(circle, #c4a090 0%, rgba(180,140,130,0.28) 32%, transparent 68%)`,
+            opacity: 0.4,
           },
         },
       ];
@@ -137,13 +175,13 @@ export default function AuroraMesh({ chapter }: Props) {
         },
       },
     ];
-  }, [isBirthday, isQuiet]);
+  }, [isBirthday, isQuiet, isWeight]);
 
   return (
     <motion.div
       className="pointer-events-none absolute inset-0 overflow-hidden contain-paint"
       aria-hidden
-      animate={{ opacity: isPlain ? 0.35 : 1 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: reduced ? 0.5 : 1.6 }}
     >
       {orbs.map((orb, i) => (

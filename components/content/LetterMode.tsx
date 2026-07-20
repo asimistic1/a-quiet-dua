@@ -46,6 +46,16 @@ export default function LetterMode({ onClose }: Props) {
                       {ch.title}
                     </p>
                   )}
+                  {ch.urduTagline && (
+                    <p
+                      dir="rtl"
+                      lang="ur"
+                      className="font-urdu urdu-body mb-4"
+                      style={{ color: "#d4b8b0" }}
+                    >
+                      {ch.urduTagline}
+                    </p>
+                  )}
                   {ch.tagline && (
                     <p
                       className="font-ui mb-4"

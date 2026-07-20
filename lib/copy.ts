@@ -4,6 +4,7 @@ export type ChapterCopy = {
   micro?: string;
   title?: string;
   tagline?: string;
+  urduTagline?: string;
   englishOnly?: boolean;
 };
 
@@ -27,11 +28,14 @@ export const chapters: ChapterCopy[] = [
     micro: "[ tap — a few quiet words ]",
   },
   {
-    urdu: [
-      "مجھ سے غلطی ہوئی۔ آپ نے منع کیا تھا، پھر بھی میں نے آپ کی دوست سے رابطہ کیا۔ میں دل سے شرمندہ ہوں۔",
-    ],
+    englishOnly: true,
+    urdu: [],
+    title: "The Weight of My Mistake",
+    urduTagline:
+      "میری غفلت نے آپ کے اصولوں کو ٹھیس پہنچائی، جس کے لیے میں شرمندہ ہوں۔",
     english:
-      "I was wrong. You asked me not to reach out — and I still contacted your friend to plan a surprise. That crossed a line you had drawn clearly. I won't explain it away. I'm sorry, Javeria. It will not happen again.",
+      "I know I have no Halal right to approach you, to speak to you, or even to wish you. Yet, in my eagerness to make your day memorable, I bypassed the boundaries you strictly set and reached out to your friend. My intention was born of care, but my actions lacked the profound respect your principles deserve. Everything went wrong, and Allah knows the depth of my shame and regret.",
+    micro: "[ tap — a few quiet words ]",
   },
   {
     urdu: ["نرسری سے ایف ایس سی تک — پندرہ برس، ایک ہی راستہ۔"],

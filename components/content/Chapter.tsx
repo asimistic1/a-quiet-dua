@@ -17,7 +17,7 @@ export default function Chapter({ chapter }: Props) {
   const copy = chapters[chapter]!;
   const isBirthday = chapter === CHAPTER.birthday;
   const isQuiet = chapter === CHAPTER.opening;
-  const isPlain = chapter === CHAPTER.apology;
+  const isWeight = chapter === CHAPTER.apology;
   const bodyColor = palette.silver;
 
   if (isBirthday && copy.englishOnly) {
@@ -30,19 +30,14 @@ export default function Chapter({ chapter }: Props) {
         exit="exit"
       >
         <div className="birthday-panel relative flex w-full max-w-[40ch] flex-col items-center text-center">
-          <motion.h1
-            variants={chapterBlock(reduced)}
-            className="birthday-title mb-5"
-          >
+          <motion.h1 variants={chapterBlock(reduced)} className="birthday-title mb-5">
             {copy.title}
           </motion.h1>
-
           {copy.tagline && (
             <motion.p variants={chapterBlock(reduced)} className="birthday-tagline mb-7">
               {copy.tagline}
             </motion.p>
           )}
-
           <motion.p variants={chapterBlock(reduced)} className="birthday-body">
             {copy.english}
           </motion.p>
@@ -61,13 +56,41 @@ export default function Chapter({ chapter }: Props) {
         exit="exit"
       >
         <div className="quiet-panel relative flex w-full max-w-[40ch] flex-col items-center text-center">
-          <motion.h1
-            variants={chapterBlock(reduced)}
-            className="quiet-title mb-7"
-          >
+          <motion.h1 variants={chapterBlock(reduced)} className="quiet-title mb-7">
             {copy.title}
           </motion.h1>
           <motion.p variants={chapterBlock(reduced)} className="quiet-body">
+            {copy.english}
+          </motion.p>
+        </div>
+      </motion.article>
+    );
+  }
+
+  if (isWeight && copy.englishOnly) {
+    return (
+      <motion.article
+        className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 pb-28 pt-12"
+        variants={chapterContainer(reduced)}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <div className="weight-panel relative flex w-full max-w-[40ch] flex-col items-center text-center">
+          <motion.h1 variants={chapterBlock(reduced)} className="weight-title mb-5">
+            {copy.title}
+          </motion.h1>
+          {copy.urduTagline && (
+            <motion.p
+              variants={chapterBlock(reduced)}
+              className="weight-urdu mb-7"
+              dir="rtl"
+              lang="ur"
+            >
+              {copy.urduTagline}
+            </motion.p>
+          )}
+          <motion.p variants={chapterBlock(reduced)} className="weight-body">
             {copy.english}
           </motion.p>
         </div>
@@ -89,10 +112,7 @@ export default function Chapter({ chapter }: Props) {
       <div className="relative flex w-full max-w-[42ch] flex-col items-center text-center">
         <div
           className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[140%] w-[120%] -translate-x-1/2 -translate-y-1/2"
-          style={{
-            background: halo,
-            filter: "blur(18px)",
-          }}
+          style={{ background: halo, filter: "blur(18px)" }}
           aria-hidden
         />
 
@@ -113,24 +133,14 @@ export default function Chapter({ chapter }: Props) {
           </motion.div>
         ))}
 
-        {!isPlain && <OrnamentDivider variants={chapterBlock(reduced)} />}
+        <OrnamentDivider variants={chapterBlock(reduced)} />
 
-        {isPlain ? (
-          <motion.p
-            variants={chapterBlock(reduced)}
-            className="font-serif english-lead text-center"
-            style={{ color: bodyColor, opacity: 0.88 }}
-          >
-            {copy.english}
-          </motion.p>
-        ) : (
-          <IlluminatedEnglish
-            text={copy.english}
-            color={bodyColor}
-            variants={chapterBlock(reduced)}
-            className="opacity-92"
-          />
-        )}
+        <IlluminatedEnglish
+          text={copy.english}
+          color={bodyColor}
+          variants={chapterBlock(reduced)}
+          className="opacity-92"
+        />
       </div>
     </motion.article>
   );

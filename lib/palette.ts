@@ -31,9 +31,9 @@ export const palette = {
 export type PaletteKey = keyof typeof palette;
 
 /** Stars fade across night chapters; birthday (0) uses underwater sparkles instead */
-export const starOpacity = [0, 0.85, 0.45, 0.35, 0.3, 0.12] as const;
+export const starOpacity = [0, 0.85, 0.4, 0.35, 0.3, 0.12] as const;
 
-export const frameOpacity = [0, 0.48, 0.06, 0.26, 0.26, 0.32] as const;
+export const frameOpacity = [0, 0.48, 0.3, 0.26, 0.26, 0.32] as const;
 
 /** Precomposed multi-stop skies — one paint layer, no blur filters. */
 export function skyGradient(chapter: number): string {
@@ -58,8 +58,13 @@ export function skyGradient(chapter: number): string {
         `radial-gradient(120% 100% at 50% 40%, #1A2F4A 0%, #122038 28%, #0C1A2C 55%, #081018 100%)`,
       ].join(", ");
     case 2:
+      // Weight of mistake — ash, mauve, deep wine stillness
       return [
-        `radial-gradient(100% 80% at 50% 40%, #09141F 0%, #061510 58%, #030A09 100%)`,
+        `radial-gradient(80% 60% at 50% 0%, rgba(90,60,80,0.45) 0%, transparent 55%)`,
+        `radial-gradient(70% 55% at 15% 80%, rgba(50,40,70,0.5) 0%, transparent 55%)`,
+        `radial-gradient(65% 50% at 90% 40%, rgba(120,70,70,0.28) 0%, transparent 52%)`,
+        `radial-gradient(90% 50% at 50% 100%, rgba(180,150,140,0.1) 0%, transparent 45%)`,
+        `radial-gradient(120% 100% at 50% 42%, #1A1420 0%, #14101A 32%, #0E0C14 60%, #08070C 100%)`,
       ].join(", ");
     case 3:
       return [

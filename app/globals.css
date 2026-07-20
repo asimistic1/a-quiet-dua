@@ -500,6 +500,285 @@ body {
   pointer-events: none;
 }
 
+/* —— Weight Night (screen 3) —— */
+.wn-haze {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.wn-haze-a {
+  width: 90vmax;
+  height: 60vmax;
+  left: -30%;
+  top: -15%;
+  background: radial-gradient(
+    ellipse,
+    rgba(110, 70, 95, 0.5) 0%,
+    rgba(60, 40, 55, 0.22) 42%,
+    transparent 70%
+  );
+}
+
+.wn-haze-b {
+  width: 80vmax;
+  height: 55vmax;
+  right: -28%;
+  bottom: -10%;
+  background: radial-gradient(
+    ellipse,
+    rgba(90, 55, 70, 0.42) 0%,
+    rgba(40, 30, 50, 0.2) 45%,
+    transparent 70%
+  );
+}
+
+.wn-haze-c {
+  width: 55vmax;
+  height: 55vmax;
+  left: 50%;
+  top: 38%;
+  margin-left: -27.5vmax;
+  margin-top: -20vmax;
+  background: radial-gradient(
+    circle,
+    rgba(200, 170, 160, 0.16) 0%,
+    rgba(140, 110, 120, 0.08) 40%,
+    transparent 68%
+  );
+}
+
+.wn-haze-drift-a {
+  animation: wn-drift-a 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wn-haze-drift-b {
+  animation: wn-drift-b 22s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wn-haze-pulse {
+  animation: wn-pulse 6s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes wn-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, 4%, 0) scale(1.06);
+  }
+}
+
+@keyframes wn-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-4%, -2%, 0) scale(1.04);
+  }
+}
+
+@keyframes wn-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.08);
+  }
+}
+
+.wn-bands {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 48px,
+    rgba(180, 150, 160, 0.035) 48px,
+    rgba(180, 150, 160, 0.035) 49px
+  );
+  opacity: 0.7;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+}
+
+.wn-bands-drift {
+  animation: wn-bands 14s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes wn-bands {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+
+.wn-weight {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 42%;
+  margin-left: -1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(200, 170, 165, 0.35) 40%,
+    rgba(200, 170, 165, 0.08) 100%
+  );
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.wn-weight-breathe {
+  animation: wn-weight 5s ease-in-out infinite;
+  will-change: opacity, transform;
+  transform-origin: top center;
+}
+
+@keyframes wn-weight {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.92);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scaleY(1.05);
+  }
+}
+
+.wn-ring {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: 55vmax;
+  height: 55vmax;
+  margin-left: -27.5vmax;
+  margin-top: -27.5vmax;
+  border-radius: 50%;
+  border: 1px solid rgba(200, 170, 165, 0.18);
+  box-shadow: inset 0 0 40px rgba(120, 80, 90, 0.12);
+  pointer-events: none;
+}
+
+.wn-ring-pulse {
+  animation: wn-ring 7s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+@keyframes wn-ring {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.06);
+  }
+}
+
+.wn-ash {
+  position: absolute;
+  top: -3%;
+  border-radius: 50%;
+  background: rgba(210, 185, 180, 0.7);
+  box-shadow: 0 0 4px rgba(180, 150, 145, 0.4);
+  opacity: 0;
+  animation: wn-ash-fall var(--a-dur, 10s) linear infinite;
+  animation-delay: var(--a-delay, 0s);
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+@keyframes wn-ash-fall {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(var(--a-drift, 10px), 110vh, 0);
+    opacity: 0;
+  }
+}
+
+.wn-edge {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(90% 70% at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.45) 100%),
+    linear-gradient(180deg, rgba(90, 50, 70, 0.12) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.weight-title {
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-weight: 600;
+  font-size: clamp(1.7rem, 6.2vw, 2.65rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #e8d5d0;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.45);
+  max-width: 16ch;
+}
+
+.weight-urdu {
+  font-family: var(--font-urdu), "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.35rem, 5vw, 1.85rem);
+  line-height: 2.15;
+  letter-spacing: 0 !important;
+  color: #d4b8b0;
+  max-width: 22ch;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  min-height: 2.8em;
+}
+
+.weight-body {
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(0.98rem, 2.8vw, 1.12rem);
+  line-height: 1.8;
+  color: #d8d0d4;
+  max-width: 38ch;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+}
+
+.weight-panel {
+  padding: 1.15rem 0.9rem;
+  border-radius: 1rem;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(20, 10, 18, 0.45) 0%,
+    rgba(20, 10, 18, 0.18) 55%,
+    transparent 78%
+  );
+}
+
+.sky-veil[data-chapter="2"] {
+  opacity: 0.9;
+  background:
+    radial-gradient(55% 40% at 50% 15%, rgba(140, 90, 110, 0.28) 0%, transparent 60%),
+    radial-gradient(50% 35% at 20% 75%, rgba(70, 50, 80, 0.22) 0%, transparent 55%);
+}
+
 /* —— Sky veils (gradient-only, no blur) —— */
 .sky-veil {
   position: absolute;
@@ -1164,6 +1443,13 @@ body {
   .qn-ribbon-drift,
   .qn-corona-breathe,
   .qn-ember,
+  .wn-haze-drift-a,
+  .wn-haze-drift-b,
+  .wn-haze-pulse,
+  .wn-bands-drift,
+  .wn-weight-breathe,
+  .wn-ring-pulse,
+  .wn-ash,
   .mote-drift,
   .shooting-star,
   .halo-breathe,
