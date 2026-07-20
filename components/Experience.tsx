@@ -127,7 +127,11 @@ export default function Experience() {
       <div className="relative z-10 flex h-[100dvh] flex-col">
         <div className="min-h-0 flex-1">
           <AnimatePresence mode="wait">
-            <Chapter key={chapter} chapter={chapter} />
+            <Chapter
+              key={chapter}
+              chapter={chapter}
+              onBeginAgain={() => setChapter(0)}
+            />
           </AnimatePresence>
         </div>
 

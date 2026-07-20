@@ -68,6 +68,8 @@ export const ui = {
   sendQuietly: "[ Send quietly ]",
   sending: "[ Sending… ]",
   sent: "[ Sent. Thank you. ]",
+  beginAgain: "[ begin again ]",
+  writePlaceholder: "Click to write",
   milestones: ["NURSERY", "PRIMARY", "MIDDLE", "MATRIC", "FSC"] as const,
 } as const;
 

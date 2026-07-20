@@ -8,11 +8,12 @@ import { chapterBlock, chapterContainer } from "@/lib/motion";
 
 type Props = {
   message: string;
+  onBeginAgain: () => void;
 };
 
 type Status = "idle" | "sending" | "sent" | "error";
 
-export default function OpenDoorChapter({ message }: Props) {
+export default function OpenDoorChapter({ message, onBeginAgain }: Props) {
   const reducedMotion = useReducedMotion();
   const reduced = !!reducedMotion;
   const [text, setText] = useState("");
@@ -46,7 +47,7 @@ export default function OpenDoorChapter({ message }: Props) {
 
   return (
     <motion.article
-      className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 pb-24 pt-12"
+      className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 pb-28 pt-12"
       variants={chapterContainer(reduced)}
       initial="hidden"
       animate="visible"
@@ -74,7 +75,7 @@ export default function OpenDoorChapter({ message }: Props) {
             disabled={sent || busy}
             rows={4}
             maxLength={2000}
-            placeholder="…"
+            placeholder={ui.writePlaceholder}
             aria-label="A quiet thought"
             className="quiet-textarea w-full resize-none"
             onKeyDown={(e) => e.stopPropagation()}
@@ -91,6 +92,19 @@ export default function OpenDoorChapter({ message }: Props) {
           </button>
         </motion.div>
       </div>
+
+      <motion.button
+        type="button"
+        variants={chapterBlock(reduced)}
+        className="quiet-begin-again font-ui absolute bottom-[calc(env(safe-area-inset-bottom)+1.25rem)] left-1/2 -translate-x-1/2"
+        onClick={(e) => {
+          e.stopPropagation();
+          onBeginAgain();
+        }}
+        aria-label="Return to the first page"
+      >
+        {ui.beginAgain}
+      </motion.button>
     </motion.article>
   );
 }

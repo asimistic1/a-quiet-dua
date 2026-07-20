@@ -10,9 +10,10 @@ import OrnamentDivider from "@/components/content/OrnamentDivider";
 
 type Props = {
   chapter: number;
+  onBeginAgain?: () => void;
 };
 
-export default function Chapter({ chapter }: Props) {
+export default function Chapter({ chapter, onBeginAgain }: Props) {
   const reducedMotion = useReducedMotion();
   const reduced = !!reducedMotion;
   const copy = chapters[chapter]!;
@@ -24,7 +25,12 @@ export default function Chapter({ chapter }: Props) {
   const bodyColor = palette.silver;
 
   if (isOpenDoor && copy.isFeedback) {
-    return <OpenDoorChapter message={copy.english} />;
+    return (
+      <OpenDoorChapter
+        message={copy.english}
+        onBeginAgain={onBeginAgain ?? (() => undefined)}
+      />
+    );
   }
 
   if (isBirthday && copy.englishOnly) {
