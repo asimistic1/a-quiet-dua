@@ -15,8 +15,8 @@ export default function Background({ chapter }: Props) {
   const reduced = useReducedMotion();
   const [layers, setLayers] = useState<Layer[]>([{ id: 0, chapter }]);
   const [tracked, setTracked] = useState(chapter);
-  const isDawn = chapter === 5;
-  const isPredawn = chapter === 4;
+  const isDawn = chapter === 0;
+  const isPredawn = chapter === 5;
 
   if (chapter !== tracked) {
     setTracked(chapter);
@@ -49,7 +49,7 @@ export default function Background({ chapter }: Props) {
               className="absolute inset-0"
               style={{
                 backgroundImage: skyGradient(layer.chapter),
-                backgroundColor: layer.chapter === 5 ? "#F3E9E1" : "#070D1A",
+                backgroundColor: layer.chapter === 0 ? "#4A90C8" : "#070D1A",
               }}
               initial={{ opacity: isTop && layers.length > 1 ? 0 : 1 }}
               animate={{ opacity: 1 }}
@@ -77,9 +77,7 @@ export default function Background({ chapter }: Props) {
 
       {isDawn && (
         <>
-          <div className={`dawn-sun ${reduced ? "" : "dawn-sun-breathe"}`} />
-          <div className={`dawn-wash ${reduced ? "" : "dawn-wash-drift"}`} />
-          <div className="dawn-rim" />
+          <div className="uw-watercolor absolute inset-0 opacity-80" />
         </>
       )}
 
@@ -87,9 +85,9 @@ export default function Background({ chapter }: Props) {
         className="absolute inset-0"
         style={{
           background: isDawn
-            ? "radial-gradient(75% 55% at 50% 100%, rgba(90,60,50,0.06) 0%, transparent 55%)"
+            ? "radial-gradient(75% 55% at 50% 100%, rgba(10,40,90,0.2) 0%, transparent 55%)"
             : "radial-gradient(80% 70% at 50% 50%, transparent 38%, rgba(0,0,0,0.42) 100%)",
-          opacity: chapter === 1 ? 1.08 : 1,
+          opacity: chapter === 2 ? 1.08 : 1,
         }}
       />
     </div>

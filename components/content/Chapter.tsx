@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { chapters } from "@/lib/copy";
+import { CHAPTER, chapters } from "@/lib/copy";
 import { chapterBlock, chapterContainer } from "@/lib/motion";
 import { palette } from "@/lib/palette";
 import GoldText from "@/components/content/GoldText";
@@ -16,16 +16,45 @@ export default function Chapter({ chapter }: Props) {
   const reducedMotion = useReducedMotion();
   const reduced = !!reducedMotion;
   const copy = chapters[chapter]!;
-  const isDawn = chapter === 5;
-  const isPlain = chapter === 1;
-  const isOpening = chapter === 0;
-  const isBirthday = chapter === 5;
-  const bodyColor = isDawn ? palette.ink : palette.silver;
-  const urduSolid = isDawn ? palette.ink : palette.gold;
+  const isBirthday = chapter === CHAPTER.birthday;
+  const isPlain = chapter === CHAPTER.apology;
+  const isOpening = chapter === CHAPTER.opening;
+  const bodyColor = palette.silver;
+  const urduSolid = palette.gold;
 
-  const halo = isDawn
-    ? "radial-gradient(ellipse at center, rgba(243,233,225,0.55) 0%, transparent 70%)"
-    : "radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, transparent 70%)";
+  if (isBirthday && copy.englishOnly) {
+    return (
+      <motion.article
+        className="relative z-10 flex h-full w-full flex-col items-center justify-center px-6 pb-28 pt-16"
+        variants={chapterContainer(reduced)}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <div className="relative flex w-full max-w-[40ch] flex-col items-center text-center">
+          <motion.h1
+            variants={chapterBlock(reduced)}
+            className="birthday-title mb-6"
+          >
+            {copy.title}
+          </motion.h1>
+
+          {copy.tagline && (
+            <motion.p variants={chapterBlock(reduced)} className="birthday-tagline mb-8">
+              {copy.tagline}
+            </motion.p>
+          )}
+
+          <motion.p variants={chapterBlock(reduced)} className="birthday-body">
+            {copy.english}
+          </motion.p>
+        </div>
+      </motion.article>
+    );
+  }
+
+  const halo =
+    "radial-gradient(ellipse at center, rgba(0,0,0,0.22) 0%, transparent 70%)";
 
   return (
     <motion.article
@@ -46,10 +75,8 @@ export default function Chapter({ chapter }: Props) {
         />
 
         {copy.urdu.map((line, index) => {
-          const isDisplay =
-            (isBirthday && index === 0) || (isOpening && index === 0);
-          const useGoldText =
-            (isOpening && index === 0) || (isBirthday && index === 0);
+          const isDisplay = isOpening && index === 0;
+          const useGoldText = isOpening && index === 0;
 
           return (
             <motion.div

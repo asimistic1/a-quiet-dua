@@ -265,7 +265,9 @@ function EkgState({ reduced }: { reduced: boolean }) {
 export default function GoldenThread({ chapter }: Props) {
   const reducedMotion = useReducedMotion();
   const reduced = !!reducedMotion;
-  const isDawn = chapter === 5;
+  // Birthday (0) has no thread; night chapters map 1→0 … 5→4
+  const threadChapter = chapter - 1;
+  const show = chapter >= 1;
 
   return (
     <div
@@ -274,7 +276,7 @@ export default function GoldenThread({ chapter }: Props) {
     >
       <motion.div
         className="flex h-full w-[min(78vw,420px)] items-center justify-center"
-        animate={{ opacity: isDawn ? 0 : 1 }}
+        animate={{ opacity: show ? 1 : 0 }}
         transition={{
           duration: reduced ? durations.reduced : durations.threadDissolve,
           ease: [0.4, 0, 0.2, 1],
@@ -286,9 +288,9 @@ export default function GoldenThread({ chapter }: Props) {
           style={{ filter: GLOW }}
         >
           <AnimatePresence mode="sync">
-            {!isDawn && (
+            {show && threadChapter >= 0 && threadChapter <= 4 && (
               <motion.g
-                key={chapter}
+                key={threadChapter}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{
@@ -300,42 +302,12 @@ export default function GoldenThread({ chapter }: Props) {
                   },
                 }}
               >
-                <ThreadState chapter={chapter} reduced={reduced} />
+                <ThreadState chapter={threadChapter} reduced={reduced} />
               </motion.g>
             )}
           </AnimatePresence>
         </svg>
       </motion.div>
-
-      {isDawn && (
-        <motion.div
-          className="absolute inset-0 flex items-end justify-center pb-[22%]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            delay: reduced ? 0 : durations.closingDotDelay,
-            duration: reduced ? durations.reduced : 1.8,
-            ease: [0.4, 0, 0.2, 1],
-          }}
-        >
-          <span className="relative flex h-[5px] w-[5px] items-center justify-center">
-            <span
-              className={`absolute block h-7 w-7 rounded-full ${reduced ? "" : "halo-breathe"}`}
-              style={{
-                border: `1px solid ${palette.gold}`,
-                opacity: reduced ? 0.18 : undefined,
-              }}
-            />
-            <span
-              className="relative block h-[5px] w-[5px] rounded-full"
-              style={{
-                background: palette.gold,
-                boxShadow: "0 0 8px rgba(230,194,128,0.5)",
-              }}
-            />
-          </span>
-        </motion.div>
-      )}
     </div>
   );
 }

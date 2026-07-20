@@ -85,7 +85,7 @@ export default function AudioToggle({ isDawn }: Props) {
   if (!available) return null;
 
   const Icon = playing ? Volume2 : VolumeX;
-  const color = isDawn ? palette.ink : palette.silver;
+  const color = isDawn ? "#ffffff" : palette.silver;
 
   return (
     <button

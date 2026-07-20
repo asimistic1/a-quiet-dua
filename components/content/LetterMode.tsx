@@ -32,26 +32,51 @@ export default function LetterMode({ onClose }: Props) {
         <div className="flex flex-col gap-16">
           {chapters.map((ch, index) => (
             <section key={index} className="flex flex-col items-center text-center">
-              {ch.urdu.map((line, i) => (
-                <p
-                  key={i}
-                  dir="rtl"
-                  lang="ur"
-                  className={`font-urdu ${index === 5 && i === 0 ? "urdu-display" : "urdu-body"} mb-3`}
-                  style={{
-                    color:
-                      (index === 0 && i === 0) || (index === 5 && i === 0)
-                        ? palette.gold
-                        : palette.silver,
-                  }}
-                >
-                  {line}
-                </p>
-              ))}
-              <p
-                className="font-serif english-lead"
-                style={{ opacity: 0.9 }}
-              >
+              {ch.englishOnly ? (
+                <>
+                  {ch.title && (
+                    <p
+                      className="font-serif mb-4"
+                      style={{
+                        fontSize: "clamp(1.4rem, 5vw, 2rem)",
+                        color: palette.gold,
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {ch.title}
+                    </p>
+                  )}
+                  {ch.tagline && (
+                    <p
+                      className="font-ui mb-4"
+                      style={{
+                        fontSize: "10px",
+                        opacity: 0.7,
+                        maxWidth: "36ch",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {ch.tagline}
+                    </p>
+                  )}
+                </>
+              ) : (
+                ch.urdu.map((line, i) => (
+                  <p
+                    key={i}
+                    dir="rtl"
+                    lang="ur"
+                    className={`font-urdu ${index === 1 && i === 0 ? "urdu-display" : "urdu-body"} mb-3`}
+                    style={{
+                      color:
+                        index === 1 && i === 0 ? palette.gold : palette.silver,
+                    }}
+                  >
+                    {line}
+                  </p>
+                ))
+              )}
+              <p className="font-serif english-lead" style={{ opacity: 0.9 }}>
                 {ch.english}
               </p>
             </section>

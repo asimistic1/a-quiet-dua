@@ -11,8 +11,8 @@ type Props = {
 export default function Crescent({ chapter }: Props) {
   const reduced = useReducedMotion();
   const maskId = useId().replace(/:/g, "");
-  const visible = chapter <= 1;
-  const opacity = chapter === 0 ? 0.32 : chapter === 1 ? 0.18 : 0;
+  const visible = chapter === 1 || chapter === 2;
+  const opacity = chapter === 1 ? 0.32 : chapter === 2 ? 0.14 : 0;
 
   return (
     <motion.div

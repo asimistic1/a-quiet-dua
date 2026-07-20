@@ -2,9 +2,22 @@ export type ChapterCopy = {
   urdu: string[];
   english: string;
   micro?: string;
+  title?: string;
+  tagline?: string;
+  englishOnly?: boolean;
 };
 
 export const chapters: ChapterCopy[] = [
+  {
+    englishOnly: true,
+    urdu: [],
+    title: "Happy 22nd Birthday, Javeria",
+    tagline:
+      "July 20, 2004 — The day this world was graced with you, and my life's greatest Naimat was born into the arms of your Ammi Jan.",
+    english:
+      "Happy 22nd Birthday, Javeria. May Allah keep you in His deepest protection, place endless Barakah in your third year of nursing, and make the knowledge you seek a source of light. Above all, may He grant your heart absolute ease, peace, and Sakinah in every way.",
+    micro: "[ tap — a few quiet words ]",
+  },
   {
     urdu: ["خاموشی کی اپنی ایک زبان ہوتی ہے۔"],
     english:
@@ -38,11 +51,6 @@ export const chapters: ChapterCopy[] = [
     english:
       "The promise of June 3rd stands exactly where you placed it: the proper way, at the right time, through your family's door. Nothing before that, and nothing less than that. Until then your space is yours — this page does not ask you to reply. It only keeps its word.",
   },
-  {
-    urdu: ["سالگرہ مبارک، جویریہ", "اللہ آپ کو اپنی امان میں رکھے۔"],
-    english:
-      "Happy 22nd birthday. May Allah protect you, bless your third year, put barakah in your knowledge, and give your heart ease in every way. This page ends here, asking for nothing. It was built slowly, and only to say: you were remembered today — with respect, with gratitude, and with dua. Back to sabr.",
-  },
 ];
 
 export const ui = {
@@ -59,3 +67,13 @@ export const ui = {
 } as const;
 
 export const TOTAL_CHAPTERS = chapters.length;
+
+/** Chapter index helpers after birthday moved to first */
+export const CHAPTER = {
+  birthday: 0,
+  opening: 1,
+  apology: 2,
+  years: 3,
+  healer: 4,
+  promise: 5,
+} as const;

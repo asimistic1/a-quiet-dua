@@ -22,8 +22,12 @@ export default function ProgressDots({ chapter, isDawn }: Props) {
             key={i}
             className="block h-1 w-1 rounded-full"
             style={{
-              background: active ? palette.gold : palette.silver,
-              opacity: active ? (isDawn ? 0.55 : 0.6) : isDawn ? 0.25 : 0.2,
+              background: isDawn
+                ? "#ffffff"
+                : active
+                  ? palette.gold
+                  : palette.silver,
+              opacity: active ? (isDawn ? 0.9 : 0.6) : isDawn ? 0.3 : 0.2,
             }}
           />
         );

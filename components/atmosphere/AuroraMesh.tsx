@@ -20,8 +20,8 @@ type Orb = {
  */
 export default function AuroraMesh({ chapter }: Props) {
   const reduced = useReducedMotion();
-  const isDawn = chapter === 5;
-  const isPlain = chapter === 1;
+  const isDawn = chapter === 0;
+  const isPlain = chapter === 2;
 
   const orbs = useMemo<Orb[]>(() => {
     if (isDawn) {
@@ -32,10 +32,10 @@ export default function AuroraMesh({ chapter }: Props) {
             width: "70vmax",
             height: "70vmax",
             left: "50%",
-            top: "-18%",
+            top: "-20%",
             marginLeft: "-35vmax",
-            background: `radial-gradient(circle, ${palette.sunBloom} 0%, rgba(255,230,184,0.35) 28%, transparent 68%)`,
-            opacity: 0.55,
+            background: `radial-gradient(circle, ${palette.foam} 0%, rgba(126,184,232,0.4) 30%, transparent 68%)`,
+            opacity: 0.45,
           },
         },
         {
@@ -43,9 +43,9 @@ export default function AuroraMesh({ chapter }: Props) {
           style: {
             width: "55vmax",
             height: "55vmax",
-            left: "-12%",
-            bottom: "-10%",
-            background: `radial-gradient(circle, ${palette.roseMist} 0%, rgba(242,214,201,0.4) 30%, transparent 70%)`,
+            left: "-14%",
+            bottom: "-12%",
+            background: `radial-gradient(circle, ${palette.oceanMid} 0%, rgba(27,79,138,0.45) 35%, transparent 70%)`,
             opacity: 0.4,
           },
         },
@@ -54,10 +54,10 @@ export default function AuroraMesh({ chapter }: Props) {
           style: {
             width: "48vmax",
             height: "48vmax",
-            right: "-14%",
-            top: "35%",
-            background: `radial-gradient(circle, ${palette.gold} 0%, rgba(230,194,128,0.28) 32%, transparent 70%)`,
-            opacity: 0.32,
+            right: "-12%",
+            top: "40%",
+            background: `radial-gradient(circle, ${palette.lavenderSea} 0%, rgba(184,164,212,0.3) 35%, transparent 70%)`,
+            opacity: 0.28,
           },
         },
       ];

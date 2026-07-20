@@ -5,7 +5,6 @@ import { useCallback, useEffect, useState } from "react";
 import AuroraMesh from "@/components/atmosphere/AuroraMesh";
 import Background from "@/components/atmosphere/Background";
 import Crescent from "@/components/atmosphere/Crescent";
-import DawnParticles from "@/components/atmosphere/DawnParticles";
 import DustMotes from "@/components/atmosphere/DustMotes";
 import EkgPulse from "@/components/atmosphere/EkgPulse";
 import GoldenThread from "@/components/atmosphere/GoldenThread";
@@ -14,20 +13,25 @@ import Mandala from "@/components/atmosphere/Mandala";
 import OrnamentFrame from "@/components/atmosphere/OrnamentFrame";
 import ShootingStar from "@/components/atmosphere/ShootingStar";
 import Stars from "@/components/atmosphere/Stars";
+import UnderwaterWorld from "@/components/atmosphere/UnderwaterWorld";
 import AudioToggle from "@/components/content/AudioToggle";
 import BackHint from "@/components/content/BackHint";
 import Chapter from "@/components/content/Chapter";
 import LetterMode from "@/components/content/LetterMode";
 import ProgressDots from "@/components/content/ProgressDots";
 import TapPrompt from "@/components/content/TapPrompt";
-import { chapters, TOTAL_CHAPTERS, ui } from "@/lib/copy";
+import { CHAPTER, chapters, TOTAL_CHAPTERS, ui } from "@/lib/copy";
 
 export default function Experience() {
   const [chapter, setChapter] = useState(0);
   const [letterMode, setLetterMode] = useState(false);
-  const isDawn = chapter === TOTAL_CHAPTERS - 1;
-  const isLast = isDawn;
-  const showAmbientMandala = chapter === 0 || chapter === 2 || chapter === 4;
+  const isBirthday = chapter === CHAPTER.birthday;
+  const isLast = chapter === CHAPTER.promise;
+  const isLight = isBirthday;
+  const showAmbientMandala =
+    chapter === CHAPTER.opening ||
+    chapter === CHAPTER.years ||
+    chapter === CHAPTER.promise;
 
   const advance = useCallback(() => {
     if (letterMode || isLast) return;
@@ -67,9 +71,9 @@ export default function Experience() {
       onClick={advance}
       aria-label="A quiet letter"
     >
-      {/* Persistent atmosphere — never unmounts */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <Background chapter={chapter} />
+        <UnderwaterWorld active={isBirthday} />
         <AuroraMesh chapter={chapter} />
         <div
           className="absolute inset-0 transition-opacity duration-[1600ms]"
@@ -77,7 +81,6 @@ export default function Experience() {
         >
           <Mandala mode="ambient" drawIn={false} />
         </div>
-        {isDawn && <Mandala mode="bloom" drawIn />}
         <Stars chapter={chapter} />
         <ShootingStar chapter={chapter} />
         <Crescent chapter={chapter} />
@@ -85,18 +88,16 @@ export default function Experience() {
         <GoldenThread chapter={chapter} />
         <DustMotes chapter={chapter} />
         <EkgPulse chapter={chapter} />
-        <DawnParticles active={isDawn} />
         <Grain />
       </div>
 
-      <AudioToggle isDawn={isDawn} />
+      <AudioToggle isDawn={isLight} />
       <BackHint
         visible={chapter > 0 && !letterMode}
-        isDawn={isDawn}
+        isDawn={isLight}
         onBack={back}
       />
 
-      {/* Content layer */}
       <div className="relative z-10 flex h-[100dvh] flex-col">
         <div className="min-h-0 flex-1">
           <AnimatePresence mode="wait">
@@ -105,22 +106,23 @@ export default function Experience() {
         </div>
 
         <div className="relative z-20 flex flex-col items-center gap-5 pb-[calc(env(safe-area-inset-bottom)+20px)] pt-2">
-          <ProgressDots chapter={chapter} isDawn={isDawn} />
+          <ProgressDots chapter={chapter} isDawn={isLight} />
           <TapPrompt
             key={chapter}
             visible={!isLast}
-            isDawn={isDawn}
+            isDawn={false}
+            ocean={isBirthday}
             label={chapters[chapter]?.micro ?? ui.tapPrompt}
             onContinue={advance}
           />
         </div>
       </div>
 
-      {chapter === 0 && !letterMode && (
+      {isBirthday && !letterMode && (
         <button
           type="button"
-          className="font-ui absolute bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] left-[max(1rem,env(safe-area-inset-left))] z-30 max-w-[42vw] text-left opacity-40 transition-opacity hover:opacity-70"
-          style={{ color: "var(--silver)", fontSize: "10px" }}
+          className="font-ui absolute bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] left-[max(1rem,env(safe-area-inset-left))] z-30 max-w-[42vw] text-left opacity-50 transition-opacity hover:opacity-80"
+          style={{ color: "#ffffff", fontSize: "10px" }}
           onClick={(e) => {
             e.stopPropagation();
             setLetterMode(true);

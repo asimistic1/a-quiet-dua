@@ -26,7 +26,7 @@ export default function BackHint({ visible, isDawn, onBack }: Props) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 0.22 }}
       transition={{ duration: 0.6 }}
-      style={{ color: isDawn ? palette.ink : palette.silver }}
+      style={{ color: isDawn ? "#ffffff" : palette.silver }}
     >
       <ChevronLeft size={22} strokeWidth={1.25} />
     </motion.button>

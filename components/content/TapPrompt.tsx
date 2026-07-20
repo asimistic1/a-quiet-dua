@@ -7,6 +7,7 @@ import { ui } from "@/lib/copy";
 type Props = {
   visible: boolean;
   isDawn: boolean;
+  ocean?: boolean;
   label: string;
   onContinue: () => void;
 };
@@ -18,6 +19,7 @@ type Props = {
 export default function TapPrompt({
   visible,
   isDawn,
+  ocean = false,
   label,
   onContinue,
 }: Props) {
@@ -38,7 +40,7 @@ export default function TapPrompt({
     >
       <button
         type="button"
-        className={`liquid-glass ${reduced ? "" : "liquid-glass-alive"}`}
+        className={`liquid-glass ${ocean ? "liquid-glass-ocean" : ""} ${reduced ? "" : "liquid-glass-alive"}`}
         aria-label={ui.continue}
         onClick={(e) => {
           e.stopPropagation();

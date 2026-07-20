@@ -17,6 +17,7 @@
   --emerald: #0e3b33;
   --teal-shadow: #0a2a26;
   --indigo-deep: #101b33;
+  --ocean-foam: #e8f4fc;
 }
 
 @theme inline {
@@ -240,15 +241,19 @@ body {
   );
 }
 
-.sky-veil[data-chapter="1"] {
+.sky-veil[data-chapter="2"] {
   opacity: 0.15;
 }
 
-.sky-veil[data-chapter="5"] {
-  opacity: 0.7;
+.sky-veil[data-chapter="0"] {
+  opacity: 0.75;
   background:
-    radial-gradient(50% 35% at 50% 12%, rgba(255, 230, 184, 0.35) 0%, transparent 60%),
-    radial-gradient(45% 30% at 15% 70%, rgba(242, 214, 201, 0.22) 0%, transparent 55%);
+    radial-gradient(50% 35% at 50% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 60%),
+    radial-gradient(45% 30% at 20% 75%, rgba(126, 184, 232, 0.3) 0%, transparent 55%);
+}
+
+.sky-veil[data-chapter="5"] {
+  opacity: 0.55;
 }
 
 .sky-veil-drift {
@@ -565,6 +570,155 @@ body {
   will-change: transform, opacity;
 }
 
+/* —— Underwater birthday world —— */
+.uw-watercolor {
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 20%, rgba(255, 255, 255, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 50% at 80% 70%, rgba(40, 90, 160, 0.25) 0%, transparent 55%),
+    radial-gradient(circle at 60% 40%, rgba(180, 220, 255, 0.15) 0%, transparent 40%);
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+}
+
+.uw-bubble {
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.05)
+  );
+  animation: uw-bubble-rise var(--b-dur, 12s) linear infinite;
+  animation-delay: var(--b-delay, 0s);
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+@keyframes uw-bubble-rise {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate3d(12px, -110vh, 0);
+    opacity: 0;
+  }
+}
+
+.uw-float-slow {
+  animation: uw-float 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes uw-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+.uw-balloon {
+  animation: uw-balloon 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes uw-balloon {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+  50% {
+    transform: translate3d(3px, -6px, 0) rotate(3deg);
+  }
+}
+
+.uw-jelly {
+  animation: uw-jelly 4.8s ease-in-out infinite;
+  animation-delay: var(--jelly-delay, 0s);
+  will-change: transform;
+}
+
+@keyframes uw-jelly {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0);
+  }
+}
+
+.uw-seaweed {
+  animation: uw-seaweed 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes uw-seaweed {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.birthday-title {
+  font-family: var(--font-serif), "Times New Roman", serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 7.5vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgba(20, 60, 110, 0.25);
+}
+
+.birthday-tagline {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(9px, 2.4vw, 11px);
+  line-height: 1.7;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 36ch;
+}
+
+.birthday-body {
+  font-family: var(--font-ui), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(11px, 2.8vw, 13px);
+  line-height: 1.85;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 38ch;
+}
+
+.liquid-glass-ocean {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(180, 220, 255, 0.16) 45%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  color: #ffffff;
+}
+
+.liquid-glass-ocean .liquid-glass-label {
+  color: #ffffff;
+}
+
+.liquid-glass-ocean .liquid-glass-hint {
+  color: rgba(255, 255, 255, 0.65);
+}
+
 :focus {
   outline: none;
 }
@@ -593,7 +747,12 @@ body {
   .dawn-sun-breathe,
   .dawn-wash-drift,
   .liquid-glass-alive,
-  .liquid-glass-alive .liquid-glass-shine {
+  .liquid-glass-alive .liquid-glass-shine,
+  .uw-bubble,
+  .uw-float-slow,
+  .uw-balloon,
+  .uw-jelly,
+  .uw-seaweed {
     animation: none !important;
   }
 }

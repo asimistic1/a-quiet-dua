@@ -14,7 +14,7 @@ export default function EkgPulse({ chapter }: Props) {
   const [pulseId, setPulseId] = useState<number | null>(null);
 
   useEffect(() => {
-    if (chapter !== 3 || reduced) return;
+    if (chapter !== 4 || reduced) return;
 
     const start = window.setTimeout(() => setPulseId(Date.now()), 2200);
     const end = window.setTimeout(() => setPulseId(null), 4600);
@@ -24,7 +24,7 @@ export default function EkgPulse({ chapter }: Props) {
     };
   }, [chapter, reduced]);
 
-  if (chapter !== 3 || reduced || pulseId === null) return null;
+  if (chapter !== 4 || reduced || pulseId === null) return null;
 
   return (
     <motion.div

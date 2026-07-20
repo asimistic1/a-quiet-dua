@@ -20,8 +20,8 @@ type Mote = {
 
 export default function DustMotes({ chapter }: Props) {
   const reduced = useReducedMotion();
-  const isPlain = chapter === 1;
-  const isYears = chapter === 2;
+  const isPlain = chapter === 2;
+  const isYears = chapter === 3;
 
   const motes = useMemo<Mote[]>(() => {
     const seeded = (n: number) => {
@@ -41,7 +41,7 @@ export default function DustMotes({ chapter }: Props) {
     }));
   }, [isYears]);
 
-  if (isPlain || reduced) return null;
+  if (isPlain || reduced || chapter === 0) return null;
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
